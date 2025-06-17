@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '../../../lib/utils';
+import styles from './Price.module.scss';
 
 export interface PriceProps {
   amount: number;
@@ -17,12 +18,6 @@ export const Price: React.FC<PriceProps> = ({
   size = 'md',
   strikethrough = false
 }) => {
-  const sizeClasses = {
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg font-semibold'
-  };
-
   const formatPrice = (price: number) => {
     return `${currency}${price.toFixed(2)}`;
   };
@@ -30,9 +25,9 @@ export const Price: React.FC<PriceProps> = ({
   return (
     <span
       className={cn(
-        'text-gray-900 dark:text-gray-100',
-        sizeClasses[size],
-        strikethrough && 'line-through text-gray-500 dark:text-gray-400',
+        styles.price,
+        styles[`price--${size}`],
+        strikethrough && styles['price--strikethrough'],
         className
       )}
     >

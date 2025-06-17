@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { cn } from '../../../lib/utils';
+import styles from './Image.module.scss';
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallback?: string;
@@ -26,16 +27,13 @@ export const Image: React.FC<ImageProps> = ({
     setIsLoading(false);
   };
 
-  const aspectRatioClasses = {
-    square: 'aspect-square',
-    portrait: 'aspect-[3/4]',
-    landscape: 'aspect-[4/3]'
-  };
-
   return (
-    <div className={cn('relative overflow-hidden', aspectRatio && aspectRatioClasses[aspectRatio])}>
+    <div className={cn(
+      styles.container,
+      aspectRatio && styles[`container--${aspectRatio}`]
+    )}>
       {isLoading && (
-        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse" />
+        <div className={styles.loading} />
       )}
       <img
         src={imageSrc}
@@ -43,8 +41,8 @@ export const Image: React.FC<ImageProps> = ({
         onError={handleError}
         onLoad={handleLoad}
         className={cn(
-          'w-full h-full object-cover transition-opacity duration-300',
-          isLoading ? 'opacity-0' : 'opacity-100',
+          styles.image,
+          isLoading ? styles['image--loading'] : styles['image--loaded'],
           className
         )}
         {...props}

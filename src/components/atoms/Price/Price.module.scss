@@ -1,0 +1,20 @@
+
+.price {
+  @apply text-gray-900 dark:text-gray-100;
+  
+  &--sm {
+    @apply text-sm;
+  }
+  
+  &--md {
+    @apply text-base;
+  }
+  
+  &--lg {
+    @apply text-lg font-semibold;
+  }
+  
+  &--strikethrough {
+    @apply line-through text-gray-500 dark:text-gray-400;
+  }
+}

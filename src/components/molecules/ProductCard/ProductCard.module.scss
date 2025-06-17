@@ -1,0 +1,74 @@
+
+.card {
+  @apply group relative bg-white dark:bg-gray-800 rounded-lg shadow-sm;
+  @apply hover:shadow-md transition-shadow duration-300;
+}
+
+.imageContainer {
+  @apply relative overflow-hidden rounded-t-lg;
+}
+
+.image {
+  @apply group-hover:scale-105 transition-transform duration-300;
+}
+
+.overlay {
+  @apply absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20;
+  @apply transition-all duration-300;
+}
+
+.actions {
+  @apply absolute top-4 right-4 flex flex-col gap-2;
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+}
+
+.favoriteButton {
+  @apply p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg;
+  @apply hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors;
+}
+
+.favoriteIcon {
+  @apply w-4 h-4 text-gray-600 dark:text-gray-300;
+}
+
+.addToCartContainer {
+  @apply absolute bottom-4 left-4 right-4;
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+}
+
+.addToCartButton {
+  @apply w-full;
+}
+
+.addToCartIcon {
+  @apply w-4 h-4 mr-2;
+}
+
+.outOfStock {
+  @apply absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center;
+}
+
+.outOfStockText {
+  @apply text-white font-medium;
+}
+
+.content {
+  @apply p-4;
+}
+
+.title {
+  @apply font-medium text-gray-900 dark:text-gray-100 mb-1 cursor-pointer;
+  @apply hover:text-gray-600 dark:hover:text-gray-300 transition-colors;
+}
+
+.category {
+  @apply text-sm text-gray-500 dark:text-gray-400 mb-2;
+}
+
+.colors {
+  @apply mt-2 flex gap-1;
+}
+
+.colorSwatch {
+  @apply w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600;
+}

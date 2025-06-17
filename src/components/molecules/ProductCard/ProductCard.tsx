@@ -7,6 +7,7 @@ import { Button } from '../../atoms/Button/Button';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { addToCart } from '../../../store/slices/cartSlice';
 import { Heart, ShoppingBag } from 'lucide-react';
+import styles from './ProductCard.module.scss';
 
 export interface ProductCardProps {
   product: Product;
@@ -22,63 +23,62 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
       name: product.name,
       price: product.price,
       image: product.image,
-      size: product.sizes[0], // Default to first available size
-      color: product.colors[0] // Default to first available color
+      size: product.sizes[0],
+      color: product.colors[0]
     }));
   };
 
   return (
-    <div className="group relative bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-      <div className="relative overflow-hidden rounded-t-lg">
+    <div className={styles.card}>
+      <div className={styles.imageContainer}>
         <Image
           src={product.image}
           alt={product.name}
           aspectRatio="portrait"
-          className="group-hover:scale-105 transition-transform duration-300"
+          className={styles.image}
         />
         
-        {/* Overlay buttons */}
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300">
-          <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-              <Heart className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+        <div className={styles.overlay}>
+          <div className={styles.actions}>
+            <button className={styles.favoriteButton}>
+              <Heart className={styles.favoriteIcon} />
             </button>
           </div>
           
-          <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className={styles.addToCartContainer}>
             <Button
               onClick={handleAddToCart}
-              className="w-full"
+              className={styles.addToCartButton}
               size="sm"
             >
-              <ShoppingBag className="w-4 h-4 mr-2" />
+              <ShoppingBag className={styles.addToCartIcon} />
               Add to Cart
             </Button>
           </div>
         </div>
         
         {!product.inStock && (
-          <div className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-            <span className="text-white font-medium">Out of Stock</span>
+          <div className={styles.outOfStock}>
+            <span className={styles.outOfStockText}>Out of Stock</span>
           </div>
         )}
       </div>
       
-      <div className="p-4">
+      <div className={styles.content}>
         <h3 
-          className="font-medium text-gray-900 dark:text-gray-100 mb-1 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          className={styles.title}
           onClick={() => onQuickView?.(product)}
         >
           {product.name}
         </h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{product.category}</p>
+        <p className={styles.category}>{product.category}</p>
         <Price amount={product.price} size="md" />
         
-        <div className="mt-2 flex gap-1">
+        <div className={styles.colors}>
           {product.colors.map((color, index) => (
             <div
               key={index}
-              className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600"
+              className={styles.colorSwatch}
               style={{ backgroundColor: color.toLowerCase() }}
               title={color}
             />
